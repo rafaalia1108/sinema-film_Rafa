@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak & Bantuan - Sinema Film</title>
+    <link rel="icon" type="image/x-icon" href="logo.jpg">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            color: #333;
+        }
+
+        .header-asli {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .header-asli img {
+            width: 80px;
+        }
+
+        .header-asli h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .header-asli p {
+            margin: 0;
+            color: #333;
+        }
+
+        .nav-asli {
+            text-align: center;
+            padding: 12px;
+        }
+
+        .nav-asli a {
+            text-decoration: underline;
+            color: blue;
+            font-size: 16px;
+        }
+
+        .content-container {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        h2 {
+            margin-bottom: 12px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            font-size: 20px;
+        }
+
+        .sub-desc {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .biodata-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 35px;
+        }
+
+        .biodata-table td {
+            padding: 8px 12px;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .biodata-table td.label {
+            font-weight: bold;
+            width: 180px;
+            color: #222;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            max-width: 450px;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-container input {
+            padding: 7px 18px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header-asli">
+        <img src="logo.jpg" alt="Logo Website">
+        <div>
+            <h1>Kontak & Bantuan</h1>
+            <p>Pusat Informasi Pengembang dan Layanan Bantuan Kendala</p>
+        </div>
+    </div>
+
+    <hr size="3" color="blue">
+
+    <div class="nav-asli">
+        <a href="index.html">Home</a> |
+        <a href="profil-film.html">Profil Film</a> |
+        <a href="about.html">Daftar Film</a> |
+        <a href="gallery.html">Gallery</a> |
+        <a href="kontak.html">Kontak</a>
+    </div>
+
+    <hr size="3" color="blue">
+
+    <div class="content-container">
+       
+        <h2>Biodata Pengembang Web</h2>
+        <table class="biodata-table">
+            <tr>
+                <td class="label">Nama Penanggung Jawab</td>
+                <td>: Rafa Aliah Puspita</td>
+            </tr>
+            <tr>
+                <td class="label">NIM / ID Anggota</td>
+                <td>: 2410114014</td>
+            </tr>
+            <tr>
+                <td class="label">Program Studi / Kelas</td>
+                <td>: Teknik Informatika / 05TPLP015</td>
+            </tr>
+            <tr>
+                <td class="label">Email Resmi</td>
+                <td>: rafaalia118@gmail.com</td>
+            </tr>
+            <tr>
+                <td class="label">Layanan Pengaduan WA</td>
+                <td>: 0896-5404-7837</td>
+            </tr>
+        </table>
+
+        <h2>Pusat Bantuan & Layanan Kendala</h2>
+        <p class="sub-desc">Apakah Anda mengalami masalah saat mengakses website, kendala pemesanan tiket, atau ingin memberikan saran? Silakan isi formulir pengaduan di bawah ini.</p>
+
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="nama">Nama Lengkap:</label>
+                <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap Anda" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Alamat Email / Whatsapp:</label>
+                <input type="email" id="email" name="email" placeholder="Masukkan email untuk balasan" required>
+            </div>
+
+            <div class="form-group">
+                <label for="kategori">Kategori Kendala / Masalah:</label>
+                <select id="kategori" name="kategori" required>
+                    <option value="">-- Pilih Jenis Kendala --</option>
+                    <option value="tiket">Kendala Pemesanan Tiket</option>
+                    <option value="trailer">Video Trailer / Gambar Tidak Bisa Diputar</option>
+                    <option value="sistem">Error / Bug Pada Halaman Web</option>
+                    <option value="jadwal">Informasi Jadwal Tayang Tidak Sesuai</option>
+                    <option value="saran">Kritik & Saran Pengembangan</option>
+                    <option value="lainnya">Kendala Lainnya</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="pesan">Detail Kendala / Pesan Pengaduan:</label>
+                <textarea id="pesan" name="pesan" placeholder="Jelaskan secara singkat kendala yang Anda alami atau masukan yang ingin disampaikan..." required></textarea>
+            </div>
+
+            <div class="btn-container">
+                <input type="submit" value="Kirim Laporan">
+                <input type="reset" value="Reset Form">
+            </div>
+        </form>
+
+    </div>
+
+    <hr style="margin-top: 40px;">
+
+    <footer>
+        <p>Admin web. Me</p>
+        <p align="center">
+            &copy; 2026 Hak Cipta Dilindungi UU No. 28/2014
+        </p>
+    </footer>
+
+</body>
+
+</html>

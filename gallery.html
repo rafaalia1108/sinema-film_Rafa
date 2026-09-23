@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Sinema Film</title>
+    <link rel="icon" type="image/x-icon" href="logo.jpg">
+    <meta name="keywords" content="film, movie, poster">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            padding: 20px;
+            padding-bottom: 40px;
+        }
+
+        /* Header & Navigation Asli */
+        .header-asli {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .header-asli img {
+            width: 80px;
+        }
+
+        .header-asli h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .header-asli p {
+            margin: 0;
+            color: #333;
+        }
+
+        .nav-asli {
+            text-align: center;
+            padding: 12px;
+        }
+
+        .nav-asli a {
+            text-decoration: underline;
+            color: blue;
+            font-size: 16px;
+        }
+
+        /* Section Gallery Modern di Bawah Header Asli */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto 0 auto;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        /* Carousel Horizontal Cards */
+        .movie-carousel {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 15px;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .movie-carousel::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .movie-card {
+            flex: 0 0 260px;
+            scroll-snap-align: center;
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eaeaea;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .poster-container {
+            position: relative;
+            width: 100%;
+            height: 360px;
+        }
+
+        .poster-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Badge Nomor Urut */
+        .badge-number {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Badge Bintang Rating */
+        .badge-rating {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #d4a017;
+            color: #ffffff;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .card-body {
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .movie-title {
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* Tampilan Rating Bintang */
+        .rating-stars {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: #f39c12;
+            font-weight: 600;
+        }
+
+        .rating-stars .score {
+            color: #333;
+            margin-left: 2px;
+        }
+
+        /* Action Buttons */
+        .action-btns {
+            display: flex;
+            gap: 6px;
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        .btn-trailer {
+            flex: 1;
+            padding: 8px 4px;
+            border: 1px solid #1a1a1a;
+            border-radius: 20px;
+            background: transparent;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+        }
+
+        .btn-ticket {
+            flex: 1;
+            padding: 8px 4px;
+            border: none;
+            border-radius: 20px;
+            background: #000000;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+        }
+
+        /* Movie Tags */
+        .tags {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            font-size: 11px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .tag-box {
+            border: 1px solid #ddd;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        .tag-age {
+            background-color: #7bc043;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Footer Asli */
+        footer {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Asli Kamu -->
+    <div class="header-asli">
+        <img src="logo.jpg" alt="Logo Website">
+        <div>
+            <h1>Gallery Film</h1>
+            <p>Kumpulan Poster Film</p>
+        </div>
+    </div>
+
+    <hr size="3" color="blue">
+
+    <!-- Navigasi Asli Kamu -->
+    <div class="nav-asli">
+        <a href="index.html">Home</a> |
+        <a href="profil-film.html">Profil Film</a> |
+        <a href="about.html">Daftar Film</a> |
+        <a href="gallery.html">Gallery</a> |
+        <a href="kontak.html">Kontak</a>
+    </div>
+
+    <hr size="3" color="blue">
+
+    <!-- Galeri Poster Film -->
+    <div class="container">
+        <h2 class="section-title">Lagi tayang</h2>
+
+        <div class="movie-carousel">
+
+            <!-- Card 1 -->
+            <div class="movie-card">
+                <div class="poster-container">
+                    <img src="Jumbo film.jpg" alt="Poster Jumbo">
+                    <span class="badge-rating">★ 9.2</span>
+                    <span class="badge-number">1</span>
+                </div>
+                <div class="card-body">
+                    <div class="movie-title">Jumbo</div>
+                    <div class="rating-stars">
+                        ★★★★★ <span class="score">9.2</span>
+                    </div>
+                    <div class="action-btns">
+                        <button class="btn-trailer">▷ Lihat trailer</button>
+                        <button class="btn-ticket">🎟 Beli tiket</button>
+                    </div>
+                    <div class="tags">
+                        <span class="tag-box">2D</span>
+                        <span class="tag-age">SU</span>
+                        <span>1h 30m</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="movie-card">
+                <div class="poster-container">
+                    <img src="film 2.jpg" alt="Poster The Lord of the Rings">
+                    <span class="badge-rating">★ 9.8</span>
+                    <span class="badge-number">2</span>
+                </div>
+                <div class="card-body">
+                    <div class="movie-title">The Lord of the Rings</div>
+                    <div class="rating-stars">
+                        ★★★★★ <span class="score">9.8</span>
+                    </div>
+                    <div class="action-btns">
+                        <button class="btn-trailer">▷ Lihat trailer</button>
+                        <button class="btn-ticket">🎟 Beli tiket</button>
+                    </div>
+                    <div class="tags">
+                        <span class="tag-box">2D</span>
+                        <span class="tag-age" style="background:#e74c3c;">13+</span>
+                        <span>2h 58m</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="movie-card">
+                <div class="poster-container">
+                    <img src="film 3.webp" alt="Poster Interstellar">
+                    <span class="badge-rating">★ 9.6</span>
+                    <span class="badge-number">3</span>
+                </div>
+                <div class="card-body">
+                    <div class="movie-title">Interstellar</div>
+                    <div class="rating-stars">
+                        ★★★★★ <span class="score">9.6</span>
+                    </div>
+                    <div class="action-btns">
+                        <button class="btn-trailer">▷ Lihat trailer</button>
+                        <button class="btn-ticket">🎟 Beli tiket</button>
+                    </div>
+                    <div class="tags">
+                        <span class="tag-box">IMAX</span>
+                        <span class="tag-age" style="background:#e74c3c;">13+</span>
+                        <span>2h 49m</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="movie-card">
+                <div class="poster-container">
+                    <img src="film 4.webp" alt="Poster Parasite">
+                    <span class="badge-rating">★ 9.4</span>
+                    <span class="badge-number">4</span>
+                </div>
+                <div class="card-body">
+                    <div class="movie-title">Parasite</div>
+                    <div class="rating-stars">
+                        ★★★★★ <span class="score">9.4</span>
+                    </div>
+                    <div class="action-btns">
+                        <button class="btn-trailer">▷ Lihat trailer</button>
+                        <button class="btn-ticket">🎟 Beli tiket</button>
+                    </div>
+                    <div class="tags">
+                        <span class="tag-box">2D</span>
+                        <span class="tag-age" style="background:#d35400;">17+</span>
+                        <span>2h 12m</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 (Moana / Film Tambahan) -->
+            <div class="movie-card">
+                <div class="poster-container">
+                    <img src="moana poster.jpg" 
+                         alt="Poster Moana" 
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500';">
+                    <span class="badge-rating">★ 9.0</span>
+                    <span class="badge-number">5</span>
+                </div>
+                <div class="card-body">
+                    <div class="movie-title">Moana</div>
+                    <div class="rating-stars">
+                        ★★★★☆ <span class="score">9.0</span>
+                    </div>
+                    <div class="action-btns">
+                        <button class="btn-trailer">▷ Lihat trailer</button>
+                        <button class="btn-ticket">🎟 Beli tiket</button>
+                    </div>
+                    <div class="tags">
+                        <span class="tag-box">2D</span>
+                        <span class="tag-age">SU</span>
+                        <span>1h 47m</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr style="margin-top: 30px;">
+
+    <!-- Footer Asli Kamu -->
+    <footer>
+        <p>Admin web. Me</p>
+        <p align="center">
+            &copy; 2026 Hak Cipta Dilindungi UU No. 28/2014
+        </p>
+    </footer>
+
+</body>
+
+</html>
