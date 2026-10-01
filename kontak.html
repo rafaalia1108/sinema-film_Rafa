@@ -6,89 +6,208 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontak & Bantuan - Sinema Film</title>
     <link rel="icon" type="image/x-icon" href="logo.jpg">
+    <!-- Google Fonts yang seragam -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 20px;
-            color: #333;
+        /* CSS Reset & Variable Tema Pop/Ceria */
+        :root {
+            --bg-color: #f0fdf4; /* Mint lembut */
+            --card-bg: #ffffff;
+            --primary-color: #ff6b81; /* Pink pastel cerah */
+            --secondary-color: #4ecdc4; /* Toska/Cyan cerah */
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --border-radius: 20px;
+            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
         }
 
-        .header-asli {
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#a855f7 0.8px, transparent 0.8px), radial-gradient(#ff6b81 0.8px, var(--bg-color) 0.8px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Header */
+        header {
+            background: var(--card-bg);
+            padding: 20px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+            border: 3px solid #ffda79;
+        }
+
+        .header-content {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 20px;
         }
 
-        .header-asli img {
+        .header-content img {
+            border-radius: 16px;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
             width: 80px;
         }
 
-        .header-asli h1 {
-            margin: 0;
-            font-size: 32px;
+        .header-content h1 {
+            font-size: 2rem;
+            color: #ff4757;
         }
 
-        .header-asli p {
-            margin: 0;
-            color: #333;
+        .header-content p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
         }
 
-        .nav-asli {
-            text-align: center;
-            padding: 12px;
+        /* Navigation Menu */
+        nav {
+            background: var(--card-bg);
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            border: 3px solid #74b9ff;
         }
 
-        .nav-asli a {
-            text-decoration: underline;
-            color: blue;
-            font-size: 16px;
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 8px 18px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
         }
 
-        .content-container {
-            max-width: 800px;
-            margin: 20px auto;
+        nav a:hover, nav a.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        nav span {
+            color: #dfe6e9;
+            align-self: center;
+            font-weight: bold;
+        }
+
+        /* Main Container Cards */
+        .content-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 25px;
+            border: 3px solid #f1f2f6;
+        }
+
+        .content-card:nth-of-type(1) {
+            border-top: 8px solid #ff4757;
+        }
+
+        .content-card:nth-of-type(2) {
+            border-top: 8px solid #4ecdc4;
         }
 
         h2 {
+            font-size: 1.6rem;
+            color: #2f3542;
             margin-bottom: 12px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 5px;
-            font-size: 20px;
         }
 
         .sub-desc {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 15px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Biodata Table Styling */
+        .biodata-container {
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 2px dashed #74b9ff;
+            padding: 15px;
+            background-color: #f8f9fa;
         }
 
         .biodata-table {
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 35px;
+            border-collapse: separate;
+            border-spacing: 0;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 0.95rem;
         }
 
         .biodata-table td {
-            padding: 8px 12px;
-            border-bottom: 1px dashed #ddd;
+            padding: 12px 16px;
+            border-bottom: 1px solid #f1f2f6;
+            font-weight: 600;
+        }
+
+        .biodata-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .biodata-table tr:nth-child(even) {
+            background-color: #f0fdf4;
         }
 
         .biodata-table td.label {
-            font-weight: bold;
-            width: 180px;
-            color: #222;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            width: 220px;
+            color: #ff4757;
+        }
+
+        /* Form Styling */
+        form {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 16px;
+            border: 2px dashed #4ecdc4;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .form-group label {
             display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 14px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 1rem;
+            color: #2d3436;
         }
 
         .form-group input[type="text"],
@@ -96,12 +215,24 @@
         .form-group select,
         .form-group textarea {
             width: 100%;
-            max-width: 450px;
-            padding: 8px 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-            box-sizing: border-box;
+            padding: 12px 15px;
+            border: 2px solid #dfe6e9;
+            border-radius: 12px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+            background-color: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6b81;
+            box-shadow: 0 0 0 4px rgba(255, 107, 129, 0.15);
         }
 
         .form-group textarea {
@@ -111,66 +242,137 @@
 
         .btn-container {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             margin-top: 10px;
+            flex-wrap: wrap;
         }
 
         .btn-container input {
-            padding: 7px 18px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 10px 22px;
+            border-radius: 12px;
+            border: none;
             cursor: pointer;
-            font-size: 14px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+        }
+
+        .btn-container input[type="submit"] {
+            background-color: #ff6b81;
+            color: #ffffff;
+        }
+
+        .btn-container input[type="reset"] {
+            background-color: #dfe6e9;
+            color: #2d3436;
+        }
+
+        .btn-container input:hover {
+            transform: translateY(-2px) scale(1.03);
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            border: 3px solid #ff7f50;
+            font-weight: 600;
+        }
+
+        footer .admin {
+            margin-bottom: 4px;
+            color: #ff4757;
+            font-weight: 700;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav span {
+                display: none;
+            }
+
+            nav a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .biodata-table td.label {
+                width: 140px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="header-asli">
-        <img src="logo.jpg" alt="Logo Website">
-        <div>
-            <h1>Kontak & Bantuan</h1>
-            <p>Pusat Informasi Pengembang dan Layanan Bantuan Kendala</p>
+    <!-- Header Section -->
+    <header>
+        <div class="header-content">
+            <img src="logo.jpg" alt="Logo Website">
+            <div>
+                <h1>Kontak & Bantuan</h1>
+                <p>Pusat Informasi Pengembang dan Layanan Bantuan Kendala</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="index.html">Home</a>
+        <span>|</span>
+        <a href="profil-film.html">Profil Film</a>
+        <span>|</span>
+        <a href="about.html">Daftar Film</a>
+        <span>|</span>
+        <a href="gallery.html">Gallery</a>
+        <span>|</span>
+        <a href="kontak.html" class="active">Kontak</a>
+    </nav>
+
+    <!-- Biodata Card -->
+    <div class="content-card">
+        <h2>Biodata Pengembang Web</h2>
+        <div class="biodata-container">
+            <table class="biodata-table">
+                <tr>
+                    <td class="label">Nama Penanggung Jawab</td>
+                    <td>: Rafa Aliah Puspita</td>
+                </tr>
+                <tr>
+                    <td class="label">NIM / ID Anggota</td>
+                    <td>: 2410114014</td>
+                </tr>
+                <tr>
+                    <td class="label">Program Studi / Kelas</td>
+                    <td>: Teknik Informatika / 05TPLP015</td>
+                </tr>
+                <tr>
+                    <td class="label">Email Resmi</td>
+                    <td>: rafaalia118@gmail.com</td>
+                </tr>
+                <tr>
+                    <td class="label">Layanan Pengaduan WA</td>
+                    <td>: 0896-5404-7837</td>
+                </tr>
+            </table>
         </div>
     </div>
 
-    <hr size="3" color="blue">
-
-    <div class="nav-asli">
-        <a href="index.html">Home</a> |
-        <a href="profil-film.html">Profil Film</a> |
-        <a href="about.html">Daftar Film</a> |
-        <a href="gallery.html">Gallery</a> |
-        <a href="kontak.html">Kontak</a>
-    </div>
-
-    <hr size="3" color="blue">
-
-    <div class="content-container">
-       
-        <h2>Biodata Pengembang Web</h2>
-        <table class="biodata-table">
-            <tr>
-                <td class="label">Nama Penanggung Jawab</td>
-                <td>: Rafa Aliah Puspita</td>
-            </tr>
-            <tr>
-                <td class="label">NIM / ID Anggota</td>
-                <td>: 2410114014</td>
-            </tr>
-            <tr>
-                <td class="label">Program Studi / Kelas</td>
-                <td>: Teknik Informatika / 05TPLP015</td>
-            </tr>
-            <tr>
-                <td class="label">Email Resmi</td>
-                <td>: rafaalia118@gmail.com</td>
-            </tr>
-            <tr>
-                <td class="label">Layanan Pengaduan WA</td>
-                <td>: 0896-5404-7837</td>
-            </tr>
-        </table>
-
+    <!-- Form Pengaduan Card -->
+    <div class="content-card">
         <h2>Pusat Bantuan & Layanan Kendala</h2>
         <p class="sub-desc">Apakah Anda mengalami masalah saat mengakses website, kendala pemesanan tiket, atau ingin memberikan saran? Silakan isi formulir pengaduan di bawah ini.</p>
 
@@ -208,16 +410,12 @@
                 <input type="reset" value="Reset Form">
             </div>
         </form>
-
     </div>
 
-    <hr style="margin-top: 40px;">
-
+    <!-- Footer -->
     <footer>
-        <p>Admin web. Me</p>
-        <p align="center">
-            &copy; 2026 Hak Cipta Dilindungi UU No. 28/2014
-        </p>
+        <p class="admin">Admin web. Me</p>
+        <p>&copy; 2026 Hak Cipta Dilindungi UU No. 28/2014</p>
     </footer>
 
 </body>

@@ -7,402 +7,458 @@
     <title>Gallery - Sinema Film</title>
     <link rel="icon" type="image/x-icon" href="logo.jpg">
     <meta name="keywords" content="film, movie, poster">
+    <!-- Google Fonts yang seragam -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
     <style>
+        /* CSS Reset & Variable Tema Pop/Ceria */
+        :root {
+            --bg-color: #f0fdf4; /* Mint lembut */
+            --card-bg: #ffffff;
+            --primary-color: #ff6b81; /* Pink pastel cerah */
+            --secondary-color: #4ecdc4; /* Toska/Cyan cerah */
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --border-radius: 20px;
+            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #ffffff;
-            color: #1a1a1a;
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#a855f7 0.8px, transparent 0.8px), radial-gradient(#ff6b81 0.8px, var(--bg-color) 0.8px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+            color: var(--text-main);
+            line-height: 1.6;
             padding: 20px;
-            padding-bottom: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        /* Header & Navigation Asli */
-        .header-asli {
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Header */
+        header {
+            background: var(--card-bg);
+            padding: 20px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+            border: 3px solid #ffda79;
+        }
+
+        .header-content {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 20px;
         }
 
-        .header-asli img {
+        .header-content img {
+            border-radius: 16px;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
             width: 80px;
         }
 
-        .header-asli h1 {
-            margin: 0;
-            font-size: 32px;
+        .header-content h1 {
+            font-size: 2rem;
+            color: #ff4757;
         }
 
-        .header-asli p {
-            margin: 0;
-            color: #333;
+        .header-content p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
         }
 
-        .nav-asli {
-            text-align: center;
-            padding: 12px;
+        /* Navigation Menu */
+        nav {
+            background: var(--card-bg);
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            border: 3px solid #74b9ff;
         }
 
-        .nav-asli a {
-            text-decoration: underline;
-            color: blue;
-            font-size: 16px;
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 8px 18px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
         }
 
-        /* Section Gallery Modern di Bawah Header Asli */
-        .container {
-            max-width: 1200px;
-            margin: 20px auto 0 auto;
+        nav a:hover, nav a.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        nav span {
+            color: #dfe6e9;
+            align-self: center;
+            font-weight: bold;
+        }
+
+        /* Main Container Card */
+        .content-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            border: 3px solid #f1f2f6;
+            border-top: 8px solid #a855f7;
         }
 
         .section-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #1a1a1a;
+            font-size: 1.6rem;
+            color: #2f3542;
+            margin-bottom: 10px;
         }
 
-        /* Carousel Horizontal Cards */
-        .movie-carousel {
-            display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding-bottom: 15px;
-            scrollbar-width: none; /* Firefox */
-        }
-
-        .movie-carousel::-webkit-scrollbar {
-            display: none; /* Chrome/Safari */
-        }
-
-        .movie-card {
-            flex: 0 0 260px;
-            scroll-snap-align: center;
-            background: #ffffff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border: 1px solid #eaeaea;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .poster-container {
-            position: relative;
-            width: 100%;
-            height: 360px;
-        }
-
-        .poster-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Badge Nomor Urut */
-        .badge-number {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        /* Badge Bintang Rating */
-        .badge-rating {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: #d4a017;
-            color: #ffffff;
-            padding: 4px 8px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 3px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        }
-
-        .card-body {
-            padding: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            align-items: center;
-        }
-
-        .movie-title {
-            font-size: 15px;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        /* Tampilan Rating Bintang */
-        .rating-stars {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 12px;
-            color: #f39c12;
+        .section-desc {
+            color: var(--text-muted);
             font-weight: 600;
+            margin-bottom: 20px;
         }
 
-        .rating-stars .score {
-            color: #333;
-            margin-left: 2px;
+        /* Interactive Grid Galeri Film */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-        /* Action Buttons */
-        .action-btns {
-            display: flex;
-            gap: 6px;
+        .poster-card {
+            background: #fff;
+            border: 3px solid #f1f2f6;
+            border-radius: 16px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .poster-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: #4ecdc4;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .poster-card img {
             width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        .poster-card h4 {
+            font-size: 1rem;
+            color: #2d3436;
+        }
+
+        .click-hint {
+            font-size: 0.75rem;
+            color: #ff4757;
+            font-weight: 700;
             margin-top: 4px;
         }
 
-        .btn-trailer {
-            flex: 1;
-            padding: 8px 4px;
-            border: 1px solid #1a1a1a;
-            border-radius: 20px;
-            background: transparent;
-            font-weight: 600;
-            font-size: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
+        /* STYLING TABEL REKOMENDASI FILM */
+        .rec-table-container {
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 2px dashed #4ecdc4;
+            padding: 15px;
+            background-color: #f8f9fa;
         }
 
-        .btn-ticket {
-            flex: 1;
-            padding: 8px 4px;
-            border: none;
-            border-radius: 20px;
-            background: #000000;
+        table.film-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background-color: #ffffff;
+            font-size: 14px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        table.film-table caption {
+            caption-side: top;
+            text-align: left;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: #ff4757;
+            padding-left: 5px;
+        }
+
+        table.film-table th, 
+        table.film-table td {
+            padding: 12px 14px;
+            text-align: center;
+            vertical-align: middle;
+            border-bottom: 1px solid #f1f2f6;
+        }
+
+        table.film-table thead tr {
+            background-color: #ff7675;
             color: #ffffff;
-            font-weight: 600;
-            font-size: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
         }
 
-        /* Movie Tags */
-        .tags {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-            font-size: 11px;
-            color: #666;
-            margin-top: 2px;
+        table.film-table tbody tr:nth-child(even) {
+            background-color: #f0fdf4;
         }
 
-        .tag-box {
-            border: 1px solid #ddd;
-            padding: 2px 5px;
-            border-radius: 4px;
+        table.film-table tbody tr:hover {
+            background-color: #ffeaa7;
         }
 
-        .tag-age {
-            background-color: #7bc043;
-            color: white;
-            padding: 2px 5px;
-            border-radius: 4px;
+        table.film-table tfoot tr {
+            background-color: #dfe6e9;
             font-weight: bold;
+            color: var(--text-main);
         }
 
-        /* Footer Asli */
+        .table-poster {
+            width: 65px;
+            height: 90px;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .rating-badge {
+            background-color: #ffa502;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 12px;
+            display: inline-block;
+        }
+
+        .genre-tag {
+            background-color: #eccc68;
+            color: #2d3436;
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        /* Footer */
         footer {
-            margin-top: 30px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            border: 3px solid #ff7f50;
+            font-weight: 600;
+        }
+
+        footer .admin {
+            margin-bottom: 4px;
+            color: #ff4757;
+            font-weight: 700;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav span {
+                display: none;
+            }
+
+            nav a {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Header Asli Kamu -->
-    <div class="header-asli">
-        <img src="logo.jpg" alt="Logo Website">
-        <div>
-            <h1>Gallery Film</h1>
-            <p>Kumpulan Poster Film</p>
+    <!-- Header Section -->
+    <header>
+        <div class="header-content">
+            <img src="logo.jpg" alt="Logo Website">
+            <div>
+                <h1>Gallery Film</h1>
+                <p>Kumpulan Poster & Rekomendasi Film</p>
+            </div>
         </div>
-    </div>
+    </header>
 
-    <hr size="3" color="blue">
-
-    <!-- Navigasi Asli Kamu -->
-    <div class="nav-asli">
-        <a href="index.html">Home</a> |
-        <a href="profil-film.html">Profil Film</a> |
-        <a href="about.html">Daftar Film</a> |
-        <a href="gallery.html">Gallery</a> |
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="index.html">Home</a>
+        <span>|</span>
+        <a href="profil-film.html">Profil Film</a>
+        <span>|</span>
+        <a href="about.html">Daftar Film</a>
+        <span>|</span>
+        <a href="gallery.html" class="active">Gallery</a>
+        <span>|</span>
         <a href="kontak.html">Kontak</a>
-    </div>
+    </nav>
 
-    <hr size="3" color="blue">
+    <!-- Konten Utama Galeri -->
+    <div class="content-card">
+        <h2 class="section-title">Pilih Poster Film</h2>
+        <p class="section-desc">Klik salah satu poster film di bawah untuk melihat rekomendasi film yang serupa dalam tabel secara otomatis!</p>
 
-    <!-- Galeri Poster Film -->
-    <div class="container">
-        <h2 class="section-title">Lagi tayang</h2>
-
-        <div class="movie-carousel">
-
-            <!-- Card 1 -->
-            <div class="movie-card">
-                <div class="poster-container">
-                    <img src="Jumbo film.jpg" alt="Poster Jumbo">
-                    <span class="badge-rating">★ 9.2</span>
-                    <span class="badge-number">1</span>
-                </div>
-                <div class="card-body">
-                    <div class="movie-title">Jumbo</div>
-                    <div class="rating-stars">
-                        ★★★★★ <span class="score">9.2</span>
-                    </div>
-                    <div class="action-btns">
-                        <button class="btn-trailer">▷ Lihat trailer</button>
-                        <button class="btn-ticket">🎟 Beli tiket</button>
-                    </div>
-                    <div class="tags">
-                        <span class="tag-box">2D</span>
-                        <span class="tag-age">SU</span>
-                        <span>1h 30m</span>
-                    </div>
-                </div>
+        <!-- Galeri Kartu Poster Interaktif -->
+        <div class="gallery-grid">
+            <div class="poster-card" onclick="pilihFilm('Jumbo', 'Jumbo film.jpg', ['Animation', 'Adventure', 'Family'], '★ 9.2', 'Nussa, Inside Out 2, Si Juki The Movie')">
+                <img src="Jumbo film.jpg" alt="Jumbo" onerror="this.src='logo.jpg'">
+                <h4>Jumbo</h4>
+                <div class="click-hint">Klik Detail ➔</div>
             </div>
-
-            <!-- Card 2 -->
-            <div class="movie-card">
-                <div class="poster-container">
-                    <img src="film 2.jpg" alt="Poster The Lord of the Rings">
-                    <span class="badge-rating">★ 9.8</span>
-                    <span class="badge-number">2</span>
-                </div>
-                <div class="card-body">
-                    <div class="movie-title">The Lord of the Rings</div>
-                    <div class="rating-stars">
-                        ★★★★★ <span class="score">9.8</span>
-                    </div>
-                    <div class="action-btns">
-                        <button class="btn-trailer">▷ Lihat trailer</button>
-                        <button class="btn-ticket">🎟 Beli tiket</button>
-                    </div>
-                    <div class="tags">
-                        <span class="tag-box">2D</span>
-                        <span class="tag-age" style="background:#e74c3c;">13+</span>
-                        <span>2h 58m</span>
-                    </div>
-                </div>
+            <div class="poster-card" onclick="pilihFilm('The Lord of the Rings', 'film 2.jpg', ['Action', 'Adventure', 'Fantasy'], '★ 9.8', 'The Hobbit, Harry Potter, Narnia')">
+                <img src="film 2.jpg" alt="The Lord of the Rings" onerror="this.src='logo.jpg'">
+                <h4>LOTR</h4>
+                <div class="click-hint">Klik Detail ➔</div>
             </div>
-
-            <!-- Card 3 -->
-            <div class="movie-card">
-                <div class="poster-container">
-                    <img src="film 3.webp" alt="Poster Interstellar">
-                    <span class="badge-rating">★ 9.6</span>
-                    <span class="badge-number">3</span>
-                </div>
-                <div class="card-body">
-                    <div class="movie-title">Interstellar</div>
-                    <div class="rating-stars">
-                        ★★★★★ <span class="score">9.6</span>
-                    </div>
-                    <div class="action-btns">
-                        <button class="btn-trailer">▷ Lihat trailer</button>
-                        <button class="btn-ticket">🎟 Beli tiket</button>
-                    </div>
-                    <div class="tags">
-                        <span class="tag-box">IMAX</span>
-                        <span class="tag-age" style="background:#e74c3c;">13+</span>
-                        <span>2h 49m</span>
-                    </div>
-                </div>
+            <div class="poster-card" onclick="pilihFilm('Interstellar', 'film 3.webp', ['Sci-Fi', 'Adventure', 'Drama'], '★ 9.6', 'The Martian, Inception, Gravity')">
+                <img src="film 3.webp" alt="Interstellar" onerror="this.src='logo.jpg'">
+                <h4>Interstellar</h4>
+                <div class="click-hint">Klik Detail ➔</div>
             </div>
-
-            <!-- Card 4 -->
-            <div class="movie-card">
-                <div class="poster-container">
-                    <img src="film 4.webp" alt="Poster Parasite">
-                    <span class="badge-rating">★ 9.4</span>
-                    <span class="badge-number">4</span>
-                </div>
-                <div class="card-body">
-                    <div class="movie-title">Parasite</div>
-                    <div class="rating-stars">
-                        ★★★★★ <span class="score">9.4</span>
-                    </div>
-                    <div class="action-btns">
-                        <button class="btn-trailer">▷ Lihat trailer</button>
-                        <button class="btn-ticket">🎟 Beli tiket</button>
-                    </div>
-                    <div class="tags">
-                        <span class="tag-box">2D</span>
-                        <span class="tag-age" style="background:#d35400;">17+</span>
-                        <span>2h 12m</span>
-                    </div>
-                </div>
+            <div class="poster-card" onclick="pilihFilm('Parasite', 'film 4.webp', ['Drama', 'Thriller', 'Comedy'], '★ 9.4', 'Knives Out, Decision to Leave, Memories of Murder')">
+                <img src="film 4.webp" alt="Parasite" onerror="this.src='logo.jpg'">
+                <h4>Parasite</h4>
+                <div class="click-hint">Klik Detail ➔</div>
             </div>
-
-            <!-- Card 5 (Moana / Film Tambahan) -->
-            <div class="movie-card">
-                <div class="poster-container">
-                    <img src="moana poster.jpg" 
-                         alt="Poster Moana" 
-                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500';">
-                    <span class="badge-rating">★ 9.0</span>
-                    <span class="badge-number">5</span>
-                </div>
-                <div class="card-body">
-                    <div class="movie-title">Moana</div>
-                    <div class="rating-stars">
-                        ★★★★☆ <span class="score">9.0</span>
-                    </div>
-                    <div class="action-btns">
-                        <button class="btn-trailer">▷ Lihat trailer</button>
-                        <button class="btn-ticket">🎟 Beli tiket</button>
-                    </div>
-                    <div class="tags">
-                        <span class="tag-box">2D</span>
-                        <span class="tag-age">SU</span>
-                        <span>1h 47m</span>
-                    </div>
-                </div>
+            <div class="poster-card" onclick="pilihFilm('Moana', 'moana poster.jpg', ['Animation', 'Adventure', 'Comedy'], '★ 9.0', 'Frozen II, Raya and the Last Dragon, Encanto')">
+                <img src="moana poster.jpg" alt="Moana" onerror="this.src='logo.jpg'">
+                <h4>Moana</h4>
+                <div class="click-hint">Klik Detail ➔</div>
             </div>
+        </div>
 
+        <!-- TABEL FITUR REKOMENDASI FILM DENGAN ELEMEN DINAMIS -->
+        <div class="rec-table-container">
+            <table class="film-table">
+                <caption id="tableCaption">Tabel Fitur Rekomendasi Daftar Film (Pilih film di atas)</caption>
+
+                <colgroup>
+                    <col style="width: 8%;">
+                    <col style="width: 15%;">
+                    <col style="width: 20%;">
+                    <col style="width: 22%;">
+                    <col style="width: 12%;">
+                    <col style="width: 23%;">
+                </colgroup>
+
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Poster</th>
+                        <th>Judul Film</th>
+                        <th>Genre</th>
+                        <th>Rating</th>
+                        <th>Rekomendasi Film Serupa</th>
+                    </tr>
+                </thead>
+
+                <tbody id="filmTableBody">
+                    <!-- Default saat baru masuk halaman -->
+                    <tr>
+                        <td>1</td>
+                        <td><img src="Jumbo film.jpg" alt="Jumbo" class="table-poster" onerror="this.src='logo.jpg'"></td>
+                        <td><strong>Jumbo</strong></td>
+                        <td>
+                            <span class="genre-tag">Animation</span>
+                            <span class="genre-tag">Adventure</span>
+                            <span class="genre-tag">Family</span>
+                        </td>
+                        <td><span class="rating-badge">★ 9.2</span></td>
+                        <td>Nussa, Inside Out 2, Si Juki The Movie</td>
+                    </tr>
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="4" style="text-align: right;"><strong>Status Tampilan:</strong></td>
+                        <td colspan="2" id="footerStatus">Menampilkan Film Dipilih</td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
     </div>
 
-    <hr style="margin-top: 30px;">
-
-    <!-- Footer Asli Kamu -->
+    <!-- Footer -->
     <footer>
-        <p>Admin web. Me</p>
-        <p align="center">
-            &copy; 2026 Hak Cipta Dilindungi UU No. 28/2014
-        </p>
+        <p class="admin">Admin web. Me</p>
+        <p>&copy; 2026 Hak Cipta Dilindungi UU No. 28/2014</p>
     </footer>
+
+    <!-- Script JavaScript untuk mengubah isi tabel sesuai film yang diklik -->
+    <script>
+        function pilihFilm(judul, imgPath, genres, rating, rekomendasi) {
+            // Ubah Caption Tabel
+            document.getElementById('tableCaption').innerText = "Rekomendasi Film Serupa untuk: " + judul;
+
+            // Generate Genre Tags HTML
+            var genreTagsHtml = genres.map(function(g) {
+                return '<span class="genre-tag">' + g + '</span>';
+            }).join(' ');
+
+            // Ubah Baris Tabel secara Dinamis
+            var tbody = document.getElementById('filmTableBody');
+            tbody.innerHTML = `
+                <tr>
+                    <td>1</td>
+                    <td><img src="${imgPath}" alt="${judul}" class="table-poster" onerror="this.src='logo.jpg'"></td>
+                    <td><strong>${judul}</strong></td>
+                    <td>${genreTagsHtml}</td>
+                    <td><span class="rating-badge">${rating}</span></td>
+                    <td>${rekomendasi}</td>
+                </tr>
+            `;
+
+            // Scroll halus menuju tabel
+            document.querySelector('.rec-table-container').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 

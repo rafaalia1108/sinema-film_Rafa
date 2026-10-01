@@ -1,80 +1,375 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sinema Film - Home</title>
     <link rel="icon" type="image/x-icon" href="logo.jpg">
     <meta name="keywords" content="film, movie, fantasy, action">
+    <!-- Google Fonts yang seragam -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Reset & Variable Tema Pop/Ceria */
+        :root {
+            --bg-color: #f0fdf4; /* Mint lembut */
+            --card-bg: #ffffff;
+            --primary-color: #ff6b81; /* Pink pastel cerah */
+            --secondary-color: #4ecdc4; /* Toska/Cyan cerah */
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --border-radius: 20px;
+            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#a855f7 0.8px, transparent 0.8px), radial-gradient(#ff6b81 0.8px, var(--bg-color) 0.8px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Header */
+        header {
+            background: var(--card-bg);
+            padding: 20px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+            border: 3px solid #ffda79;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-content img {
+            border-radius: 16px;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+
+        .header-content h1 {
+            font-size: 2rem;
+            color: #ff4757;
+        }
+
+        .header-content p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Navigation Menu */
+        nav {
+            background: var(--card-bg);
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            border: 3px solid #74b9ff;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 8px 18px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        nav span {
+            color: #dfe6e9;
+            align-self: center;
+            font-weight: bold;
+        }
+
+        /* Main Content Cards */
+        .content-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 25px;
+            border: 3px solid #f1f2f6;
+        }
+
+        .content-card.welcome {
+            border-top: 8px solid #2ed573;
+        }
+
+        .content-card.available-movies {
+            border-top: 8px solid #ff4757;
+        }
+
+        .content-card.packages {
+            border-top: 8px solid #1e90ff;
+        }
+
+        .content-card h2 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: #2f3542;
+        }
+
+        .content-card p {
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Movie Pills List */
+        .movie-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .movie-pills li {
+            background-color: #f8f9fa;
+            border: 2px dashed #ffa502;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            color: #2f3542;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .movie-pills li::before {
+            content: "🎬";
+        }
+
+        /* Subscription Cards Grid */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .package-item {
+            background-color: #f8f9fa;
+            border: 2px solid #eccc68;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-item b {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.15rem;
+            color: #ff4757;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .package-item ul {
+            padding-left: 20px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .package-item ul li {
+            margin-bottom: 6px;
+        }
+
+        /* Call to Action Box */
+        .cta-box {
+            background: #ffffff;
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            border: 3px dashed var(--secondary-color);
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .cta-box b {
+            color: #ff6b81;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            border: 3px solid #ff7f50;
+            font-weight: 600;
+        }
+
+        footer .admin {
+            margin-bottom: 4px;
+            color: #ff4757;
+            font-weight: 700;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav span {
+                display: none;
+            }
+
+            nav a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
-
-        <img src="logo.jpg" width="80" alt="Logo Website">
-
-        <div>
-            <h1 style="margin: 0;">Sinema Film</h1>
-            <p style="margin: 0;">Film Yang Sedang Tayang</p>
+    <!-- Header Section -->
+    <header>
+        <div class="header-content">
+            <img src="logo.jpg" width="80" alt="Logo Website">
+            <div>
+                <h1>Sinema Film</h1>
+                <p>Film Yang Sedang Tayang</p>
+            </div>
         </div>
+    </header>
 
-    </div>
-
-    <hr size="3" color="blue">
-
-    <!-- MENU -->
-    <div style="text-align: center; padding: 12px;">
-
-        <a href="index.html">Home</a> |
-        <a href="profil-film.html">Profil Film</a> |
-        <a href="about.html">Daftar Film</a> |
-        <a href="gallery.html">Gallery</a> |
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="index.html" class="active">Home</a>
+        <span>|</span>
+        <a href="profil-film.html">Profil Film</a>
+        <span>|</span>
+        <a href="about.html">Daftar Film</a>
+        <span>|</span>
+        <a href="gallery.html">Gallery</a>
+        <span>|</span>
         <a href="kontak.html">Kontak</a>
+    </nav>
 
+    <!-- Welcome Section -->
+    <div class="content-card welcome">
+        <h2>Selamat Datang di Sinema Film</h2>
+        <p>
+            Selamat datang di website Sinema Film. Website ini berisi informasi
+            mengenai berbagai film yang sedang ditampilkan, mulai dari film
+            animasi, adventure, fantasy, sci-fi, drama hingga thriller.
+        </p>
+        <p>
+            Pada website ini terdapat informasi mengenai judul film, genre,
+            tahun tayang, harga tiket, poster, video trailer, dan deskripsi
+            singkat dari setiap film.
+        </p>
     </div>
 
-    <hr size="3" color="blue">
+    <!-- Available Movies Section -->
+    <div class="content-card available-movies">
+        <h2>Film Yang Tersedia</h2>
+        <ol class="movie-pills">
+            <li>Jumbo</li>
+            <li>The Lord of the Rings</li>
+            <li>Interstellar</li>
+            <li>Parasite</li>
+            <li>Moana</li>
+        </ol>
+    </div>
 
-    <!-- ISI HOME -->
+    <!-- Subscription Packages Section -->
+    <div class="content-card packages">
+        <h2>Pilihan Paket Berlangganan</h2>
+        <ol class="packages-grid">
+            <li class="package-item">
+                <b>Paket Basic (Rp 49.000 / bulan)</b>
+                <ul>
+                    <li>Kualitas tayangan SD (480p)</li>
+                    <li>Dapat menonton di 1 perangkat secara bersamaan</li>
+                    <li>Akses penuh ke seluruh koleksi film lokal</li>
+                </ul>
+            </li>
+            <li class="package-item">
+                <b>Paket Standard (Rp 89.000 / bulan)</b>
+                <ul>
+                    <li>Kualitas tayangan Full HD (1080p)</li>
+                    <li>Dapat menonton di 2 perangkat secara bersamaan</li>
+                    <li>Bebas iklan dan bisa mengunduh film untuk ditonton offline</li>
+                </ul>
+            </li>
+            <li class="package-item">
+                <b>Paket Premium (Rp 139.000 / bulan)</b>
+                <ul>
+                    <li>Kualitas tayangan Ultra HD (4K) & HDR</li>
+                    <li>Dapat menonton di 4 perangkat secara bersamaan</li>
+                    <li>Dukungan audio Dolby Atmos dan akses prioritas film terbaru</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
 
-    <h2 align="center">Selamat Datang di Sinema Film</h2>
-
-    <p align="justify">
-        Selamat datang di website Sinema Film. Website ini berisi informasi
-        mengenai berbagai film yang sedang ditampilkan, mulai dari film
-        animasi, adventure, fantasy, sci-fi, drama hingga thriller.
-    </p>
-
-    <p align="justify">
-        Pada website ini terdapat informasi mengenai judul film, genre,
-        tahun tayang, harga tiket, poster, video trailer, dan deskripsi
-        singkat dari setiap film.
-    </p>
-
-    <h2>Film Yang Tersedia</h2>
-
-    <ol>
-        <li>Jumbo</li>
-        <li>The Lord of the Rings</li>
-        <li>Interstellar</li>
-        <li>Parasite</li>
-        <li>Moana</li>
-    </ol>
-
-    <p>
+    <!-- Call to Action Text -->
+    <div class="cta-box">
         Silakan pilih menu <b>Profil Film</b> untuk melihat informasi film,
         <b>Daftar Film</b> untuk melihat video, <b>Gallery</b> untuk melihat
         poster, dan <b>Kontak</b> untuk menghubungi admin.
-    </p>
+    </div>
 
-    <hr>
-
-    <p>Admin web. Me</p>
-
-    <p align="center">
-        &copy; 2026 Hak Cipta Dilindungi UU No. 28/2014
-    </p>
+    <!-- Footer -->
+    <footer>
+        <p class="admin">Admin web. Me</p>
+        <p>&copy; 2026 Hak Cipta Dilindungi UU No. 28/2014</p>
+    </footer>
 
 </body>
 
