@@ -46,7 +46,6 @@
             font-family: 'Fredoka', sans-serif;
         }
 
-        /* Header */
         header {
             background: var(--card-bg);
             padding: 20px 30px;
@@ -78,7 +77,6 @@
             font-weight: 600;
         }
 
-        /* Navigasi */
         nav {
             background: var(--card-bg);
             padding: 12px 20px;
@@ -114,7 +112,6 @@
             font-weight: bold;
         }
 
-        /* Container Utama */
         .main-card {
             background: var(--card-bg);
             border-radius: var(--border-radius);
@@ -130,11 +127,11 @@
             margin-bottom: 20px;
         }
 
-        /* Biodata */
         .biodata-box {
             border: 2px dashed #74b9ff;
             border-radius: 16px;
             padding: 15px;
+            margin-bottom: 25px;
         }
 
         .biodata-table {
@@ -158,6 +155,53 @@
             border-radius: 8px;
         }
 
+        /* Form Saran & Masukan */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #2f3542;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #dfe6e9;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: #ff6b81;
+            color: #ffffff;
+            border: none;
+            border-radius: 14px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #ff4757;
+        }
+
         footer {
             background: var(--card-bg);
             padding: 20px;
@@ -178,7 +222,6 @@
 
 <body>
 
-    <!-- Header -->
     <header>
         <div class="header-content">
             <img src="logo.jpg" width="70" alt="Logo Cinema">
@@ -189,7 +232,6 @@
         </div>
     </header>
 
-    <!-- Navigasi -->
     <nav>
         <a href="index.html">Home</a>
         <span>|</span>
@@ -204,7 +246,6 @@
         <a href="kontak.html" class="active">Kontak</a>
     </nav>
 
-    <!-- Container Utama -->
     <div class="main-card">
         <h2>Biodata Pengembang Web</h2>
         <div class="biodata-box">
@@ -231,9 +272,28 @@
                 </tr>
             </table>
         </div>
+
+        <h2>Kirim Saran & Masukan</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="nama">Nama Anda</label>
+                <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Anda</label>
+                <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+            </div>
+
+            <div class="form-group">
+                <label for="saran">Pesan / Saran</label>
+                <textarea id="saran" name="saran" placeholder="Tuliskan saran atau kendala yang Anda alami..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Kirim Saran</button>
+        </form>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p class="admin">Admin web. Rafa Aliah Puspita</p>
         <p>&copy; 2026 Hak Cipta Dilindungi UU No. 28/2014</p>
