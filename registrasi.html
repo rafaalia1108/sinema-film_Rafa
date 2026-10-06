@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi Pelanggan</title>
+    <link rel="icon" type="image/x-icon" href="logo.jpg" />
+    <meta name="keywords" content="film, movie, registrasi, pelanggan, kontak" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #f0fdf4;
+            --card-bg: #ffffff;
+            --primary-color: #ff6b81; 
+            --secondary-color: #4ecdc4; 
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --border-radius: 20px;
+            --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#ff6b81 0.8px, transparent 0.8px), radial-gradient(#2ed573 0.8px, var(--bg-color) 0.8px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Header */
+        header {
+            background: var(--card-bg);
+            padding: 20px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+            border: 3px solid #ffda79;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-content img {
+            border-radius: 16px;
+            object-fit: cover;
+        }
+
+        .header-content h1 {
+            font-size: 2.2rem;
+            color: #ff4757;
+        }
+
+        .header-content p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Navigasi Tambah Menu Registrasi */
+        nav {
+            background: var(--card-bg);
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            border: 3px solid #74b9ff;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 8px 18px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        nav a.active {
+            background-color: #ff6b81;
+            color: #ffffff;
+        }
+
+        nav span {
+            color: #dfe6e9;
+            font-weight: bold;
+        }
+
+        /* Main Container */
+        .main-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            border-top: 8px solid #ff4757;
+        }
+
+        .main-card h2 {
+            font-size: 1.6rem;
+            color: #2f3542;
+            margin-bottom: 20px;
+        }
+
+        /* Form Registrasi */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #2f3542;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #dfe6e9;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .payment-option {
+            background-color: #f8f9fa;
+            border: 2px dashed #eccc68;
+            border-radius: 14px;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+
+        .payment-option label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            color: #2f3542;
+            flex-wrap: wrap;
+        }
+
+        .payment-option img {
+            height: 22px;
+            object-fit: contain;
+        }
+
+        .card-input {
+            margin-top: 10px;
+            padding-left: 25px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: #ff6b81;
+            color: #ffffff;
+            border: none;
+            border-radius: 14px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #ff4757;
+        }
+
+        footer {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            color: var(--text-muted);
+            border: 3px solid #ff7f50;
+            font-weight: 600;
+        }
+
+        footer .admin {
+            color: #ff4757;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <img src="logo.jpg" width="70" alt="Logo Cinema">
+            <div>
+                <h1>Registrasi Pelanggan</h1>
+                <p>Pendaftaran Akun dan Paket Langganan Sinema Film</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigasi (Menambahkan Pilihan Registrasi) -->
+    <nav>
+        <a href="index.html">Home</a>
+        <span>|</span>
+        <a href="profil-film.html">Profil Film</a>
+        <span>|</span>
+        <a href="about.html">Daftar Film</a>
+        <span>|</span>
+        <a href="gallery.html">Gallery</a>
+        <span>|</span>
+        <a href="registrasi.html" class="active">Registrasi</a>
+        <span>|</span>
+        <a href="kontak.html">Kontak</a>
+    </nav>
+
+    <!-- Container Form Utama -->
+    <div class="main-card">
+        <h2>Form Registrasi Pelanggan</h2>
+        <form action="#" method="post">
+            
+            <!-- 1. Textbox Nama Lengkap -->
+            <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap Anda" required>
+            </div>
+
+            <!-- 1. Textbox Email -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="contoh@email.com" required>
+            </div>
+
+            <!-- 1. Textbox Password -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Masukkan password Anda" required>
+            </div>
+
+            <!-- 2. Combobox Pilihan Paket -->
+            <div class="form-group">
+                <label for="paket">Pilihan Paket Langganan</label>
+                <select id="paket" name="paket" required>
+                    <option value="">-- Pilih Paket --</option>
+                    <option value="Basic">Basic</option>
+                    <option value="Standar">Standar</option>
+                    <option value="Premium">Premium</option>
+                </select>
+            </div>
+
+            <!-- 3. Radio Button Pilihan Pembayaran -->
+            <div class="form-group">
+                <label>Metode Pembayaran</label>
+
+                <!-- Kartu Debit/Kredit -->
+                <div class="payment-option">
+                    <label>
+                        <input type="radio" name="pembayaran" value="Kartu" required>
+                        Kartu Debit/Kredit
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+                    </label>
+                    <div class="card-input">
+                        <input type="text" name="nomor_kartu" placeholder="Masukkan nomor kartu (16 digit)">
+                    </div>
+                </div>
+
+                <!-- Dompet Digital -->
+                <div class="payment-option">
+                    <label>
+                        <input type="radio" name="pembayaran" value="Dompet Digital">
+                        Dompet Digital
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/eb/e8/Logo_GoPay.svg" alt="GoPay">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_OVO.svg" alt="OVO">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Dana_logo.svg" alt="DANA">
+                    </label>
+                </div>
+            </div>
+
+            <!-- 4. Button Submit -->
+            <button type="submit" class="btn-submit">Kirim Data</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p class="admin">Admin web. Rafa Aliah Puspita</p>
+        <p>&copy; 2026 Hak Cipta Dilindungi UU No. 28/2014</p>
+    </footer>
+
+</body>
+
+</html>
